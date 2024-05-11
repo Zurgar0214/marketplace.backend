@@ -56,6 +56,6 @@ Este README proporciona una visión general del proyecto y sus componentes princ
 
 ---
 
-![Python](https://www.python.org/static/community_logos/python-logo.png)
-![FastAPI](https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png)
-![SQLAlchemy](https://upload.wikimedia.org/wikipedia/en/thumb/9/98/SQLAlchemy_logo.svg/1200px-SQLAlchemy_logo.svg.png)
+![Python](./resources/images/python.png)
+![FastAPI](./resources/images/fast-api.png)
+![SQLAlchemy](./resources/images/sql-alchemy.png)
