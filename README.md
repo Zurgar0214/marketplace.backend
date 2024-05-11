@@ -48,8 +48,14 @@ El proyecto seguirá una arquitectura limpia, organizada en capas para garantiza
 
 ## Autores - CodeSnakes
 
-- 1. 
+-  
 
 ## Nota
 
 Este README proporciona una visión general del proyecto y sus componentes principales. Para obtener detalles más específicos sobre la implementación y el funcionamiento del sistema, consulte la documentación técnica y los comentarios dentro del código fuente.
+
+---
+
+![Python](https://www.python.org/static/community_logos/python-logo.png)
+![FastAPI](https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png)
+![SQLAlchemy](https://upload.wikimedia.org/wikipedia/en/thumb/9/98/SQLAlchemy_logo.svg/1200px-SQLAlchemy_logo.svg.png)
