@@ -1,9 +1,11 @@
 from dddpy.domain.Enums import postCategory, postStatus
 from typing import List
+from dddpy.domain.Entities.entity import Entity
 
 
-class Post:
-    def __init__(self, name : str, category: postCategory, price: float, description: str, stock: int, images :List[str], status: postStatus):
+class Post(Entity):
+    def __init__(self,id: str, name : str, category: postCategory, price: float, description: str, stock: int, images :List[str], status: postStatus):
+        super().__init__(id)
         self.Name : str = name
         self.Descrption : str = description
         self.Stock : int = stock
