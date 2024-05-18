@@ -1,10 +1,12 @@
 from fastapi import FastAPI, status, APIRouter, Depends
 from sqlalchemy.orm import Session
 from dddpy.domain.Entities.post import Post
-from dddpy.insfrastructure.sqlite.database import get_db
+from dddpy.insfrastructure.sqlite.database import get_db, Base, engine
 from dddpy.insfrastructure.sqlite.repository.repository import GenericRepository
 from dddpy.insfrastructure.sqlite.schemas.post_dto import PostDTO
 
+
+Base.metadata.create_all(bind= engine)
 app = FastAPI(debug=True)
 
 
@@ -18,9 +20,9 @@ async def healthCheck():
 
 
 @app.post("/createPost")
-def get_post(post_id: str, db: Session = Depends(get_db)):
+async def get_post(post_id: str, db: Session = Depends(get_db)):
     repository = PostRepository(db)
-    post = repository.get(post_id)
+    post = repository.post()
     return post.to_dto()
 
 class PostRepository(GenericRepository[Post]):
