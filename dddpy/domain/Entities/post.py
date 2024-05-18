@@ -3,21 +3,13 @@ from dddpy.domain.Enums import postCategory, postStatus
 from typing import List
 from dddpy.domain.Entities.entity import Entity
 
-class Post(BaseModel):
-    id:int
-    name:str
-    category:int
-    price:float
-    description:str
-    stock:int
-    status:int
-# class Post(Entity, BaseModel):
-#     def __init__(self,id: str, name : str, category: postCategory, price: float, description: str, stock: int, images :List[str], status: postStatus):
-#         super().__init__(id)
-#         self.Name : str = name
-#         self.Descrption : str = description
-#         self.Stock : int = stock
-#         self.Images : List[str] = images
-#         self.Category: postCategory = category
-#         self.Price: float = price
-#         self.Status : postStatus = status
+class Post(Entity, BaseModel):
+    def __init__(self,id: str, name : str, category: postCategory, price: float, description: str, stock: int, images :List[str], status: postStatus):
+        super().__init__(id)
+        self.Name : str = name
+        self.Descrption : str = description
+        self.Stock : int = stock
+        self.Images : List[str] = images
+        self.Category: postCategory = category
+        self.Price: float = price
+        self.Status : postStatus = status

@@ -33,8 +33,9 @@ async def create_post(post:Post, db: Session = Depends(get_db)):
      "/getPosts"
         )
 async def get_posts(db:Session = Depends(get_db)):
-        return [(db.query(PostDTO).all())]
-     
+        repository = GenericRepository(db, PostDTO)
+        return repository.get_all()
+             
 
 class PostRepository(GenericRepository[PostDTO]):
     def __init__(self, db_session: Session):
