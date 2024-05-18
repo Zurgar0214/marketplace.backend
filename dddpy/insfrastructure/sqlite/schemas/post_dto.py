@@ -1,10 +1,14 @@
 # dto/post_dto.py
-from datetime import datetime
+from sqlalchemy import Column, Integer, String, Float
+from dddpy.insfrastructure.sqlite.database import Base
 
-class PostDTO:
-    def __init__(self, id: str, title: str, content: str, creation_date: datetime, last_modified_date: datetime):
-        self.id = id
-        self.title = title
-        self.content = content
-        self.creation_date = creation_date
-        self.last_modified_date = last_modified_date
+
+class PostDTO(Base):
+    __tablename__ = "Posts"
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String)
+    category = Column(Integer)
+    price = Column(Float)
+    description = Column(String)
+    stock = Column(Integer)
+    status = Column(Integer)
