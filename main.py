@@ -5,8 +5,7 @@ from dddpy.insfrastructure.sqlite.database import get_db
 from dddpy.insfrastructure.sqlite.repository.repository import GenericRepository
 from dddpy.insfrastructure.sqlite.schemas.post_dto import PostDTO
 
-app = FastAPI()
-router = APIRouter()
+app = FastAPI(debug=True)
 
 
 @app.get(
@@ -18,7 +17,7 @@ async def healthCheck():
     return {"message": "All works!"}
 
 
-@app.get("/posts/{post_id}")
+@app.post("/createPost")
 def get_post(post_id: str, db: Session = Depends(get_db)):
     repository = PostRepository(db)
     post = repository.get(post_id)
