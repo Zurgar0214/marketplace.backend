@@ -2,6 +2,7 @@ from datetime import datetime
 from sqlalchemy import Column, DateTime, String
 from dddpy.insfrastructure.sqlite.database import Base
 import uuid
+from dddpy.insfrastructure.services import EncryptService
 
 class UserDTO(Base):
     __tablename__ = "Users"
@@ -11,7 +12,6 @@ class UserDTO(Base):
     name = Column(String)
     lastName = Column(String)
     email = Column(String)
-    phone = Column(String)
     password = Column(String)
     phone = Column(String)
     password = Column(String)
@@ -24,7 +24,7 @@ class UserDTO(Base):
         self.lastName = lastName
         self.email = email
         self.phone = phone
-        self.password = password
+        self.password = EncryptService.encrypt_password(password)
         self.creation_date = datetime.now()
         self.last_modified_date = self.creation_date
 
