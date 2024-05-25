@@ -1,7 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Column, String, ForeignKey, Float, DateTime
-from sqlalchemy import relationship
+from sqlalchemy import Column, String, ForeignKey, Float, DateTime, relationship
 
 from dddpy.insfrastructure.sqlite.database import Base
 

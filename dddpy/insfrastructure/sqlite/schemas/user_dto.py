@@ -1,10 +1,10 @@
-# dto/user_dto.py
-from datetime import datetime
+from sqlalchemy import Column, DateTime, String
+from dddpy.insfrastructure.sqlite.database import Base
 
-class UserDTO:
-    def __init__(self, id: str, username: str, email: str, creation_date: datetime, last_modified_date: datetime):
-        self.id = id
-        self.username = username
-        self.email = email
-        self.creation_date = creation_date
-        self.last_modified_date = last_modified_date
+class UserDTO(Base):
+    __tablename__ = "Users"
+    id = Column(String, primary_key=True, index=True)
+    username = Column(String)
+    email = Column(String)
+    creation_date = Column(DateTime)
+    last_modified_date = Column(DateTime)
