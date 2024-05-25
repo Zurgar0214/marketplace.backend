@@ -6,6 +6,7 @@ from dddpy.application.Models.loginDataModel import UserLogin
 from dddpy.application.Models.userModel import UserModel
 from dddpy.application.Models.loginDataModel import UserLogin
 from dddpy.application.Models.userModel import UserModel
+from dddpy.application.Services.authService import validate_password
 from dddpy.domain.Entities.post import Post
 from dddpy.insfrastructure.Auth.jwt_manage import encode_jwt
 from dddpy.insfrastructure.Auth.jwt_manage import encode_jwt
