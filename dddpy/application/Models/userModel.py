@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from dddpy.application.Models.entityModel import EntityModel
 
 
-class UserModel(EntityModel, BaseModel):
+class UserModel(BaseModel):
     name: str
     lastName: str
     email: str
