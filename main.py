@@ -1,13 +1,18 @@
 from fastapi import FastAPI, status, Depends
 from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
+from dddpy.application.Models.loginDataModel import UserLogin
+from dddpy.application.Models.userModel import UserModel
 from dddpy.application.Models.loginDataModel import UserLogin
 from dddpy.application.Models.userModel import UserModel
 from dddpy.domain.Entities.post import Post
 from dddpy.insfrastructure.Auth.jwt_manage import encode_jwt
+from dddpy.insfrastructure.Auth.jwt_manage import encode_jwt
 from dddpy.insfrastructure.sqlite.database import get_db, Base, engine
 from dddpy.insfrastructure.sqlite.repository.repository import GenericRepository
 from dddpy.insfrastructure.sqlite.schemas.post_dto import PostDTO
+from dddpy.insfrastructure.sqlite.schemas.user_dto import UserDTO
 from dddpy.insfrastructure.sqlite.schemas.user_dto import UserDTO
 
 
