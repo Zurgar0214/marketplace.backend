@@ -46,9 +46,13 @@ El proyecto seguirá una arquitectura limpia, organizada en capas para garantiza
 
 ---
 
-## Autores - CodeSnakes
+## Autores - CodeSnakes ![CodeSnakes](./resources/images/codesnakes.png)
 
--  
+- Jhonatan Arroyave Gonzales
+- Daniel Antonio Giraldo Quintero
+- Miguel Angel
+- Juan Diego Ramírez Muñoz
+- Juan Diego Varón Valencia
 
 ## Nota
 

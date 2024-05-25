@@ -1,10 +1,17 @@
-# dto/order_dto.py
 from datetime import datetime
 
-class OrderDTO:
-    def __init__(self, id: str, user_id: str, total_amount: float, creation_date: datetime, last_modified_date: datetime):
-        self.id = id
-        self.user_id = user_id
-        self.total_amount = total_amount
-        self.creation_date = creation_date
-        self.last_modified_date = last_modified_date
+from sqlalchemy import Column, String, ForeignKey, Float, DateTime
+from sqlalchemy import relationship
+
+from dddpy.insfrastructure.sqlite.database import Base
+
+class OrderDTO(Base):
+    __tablename__ = "Orders"
+    id = Column(String, primary_key= True, index=True)
+    user_id = Column(String, ForeignKey('Users.id'))
+    user = relationship("UserDTO")
+    total_amount = Column(Float)
+    creation_date = Column(DateTime)
+    last_modified_date = Column(DateTime)
+    post_id = Column(String, ForeignKey('Posts.id'))
+    post = relationship("PostDTO")

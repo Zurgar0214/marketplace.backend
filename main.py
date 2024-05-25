@@ -6,8 +6,8 @@ from dddpy.insfrastructure.sqlite.repository.repository import GenericRepository
 from dddpy.insfrastructure.sqlite.schemas.post_dto import PostDTO
 
 
-Base.metadata.create_all(bind= engine)
 app = FastAPI(debug=True)
+Base.metadata.create_all(bind= engine)
 
 
 @app.get(
@@ -19,14 +19,24 @@ async def healthCheck():
     return {"message": "All works!"}
 
 
-@app.post("/createPost")
-async def create_post(post: str, db: Session = Depends(get_db)):
-    new_post = PostDTO(**post.__dict__)
-    db.add(new_post)
-    db.commit()
-    db.refresh(new_post)
-    return "true"
+@app.post(
+        "/createPost"
+        )
+async def create_post(post:Post, db: Session = Depends(get_db)):
+        new_post = PostDTO(**post.__dict__)
+        db.add(new_post)
+        db.commit()
+        db.refresh(new_post)
+        return "true"
 
-class PostRepository(GenericRepository[Post]):
+@app.get(
+     "/getPosts"
+        )
+async def get_posts(db:Session = Depends(get_db)):
+        repository = GenericRepository(db, PostDTO)
+        return repository.get_all()
+             
+
+class PostRepository(GenericRepository[PostDTO]):
     def __init__(self, db_session: Session):
         super().__init__(db_session, Post)
