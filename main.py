@@ -1,4 +1,4 @@
-from fastapi import FastAPI, status, APIRouter, Depends
+from fastapi import FastAPI, status, Depends
 from sqlalchemy.orm import Session
 from dddpy.domain.Entities.post import Post
 from dddpy.insfrastructure.sqlite.database import get_db, Base, engine
