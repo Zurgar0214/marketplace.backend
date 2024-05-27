@@ -27,6 +27,3 @@ class UserDTO(Base):
         self.password = encrypt_password(password)
         self.creation_date = datetime.now()
         self.last_modified_date = self.creation_date
-
-    #     return UserDTO( name = name, lastName = lastName, email = email, phone = phone, password = password
-    #                    creation_date = DateTime)

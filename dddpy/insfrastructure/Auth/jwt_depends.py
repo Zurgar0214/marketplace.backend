@@ -1,6 +1,7 @@
 from fastapi import HTTPException, Request
 from fastapi.security import HTTPBearer
 
+from dddpy.application.Services.authService import get_user_by_username_and_role
 from dddpy.insfrastructure.Auth.jwt_manage import decode_jwt
 
 
