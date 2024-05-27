@@ -11,3 +11,4 @@ class PostDTO(Base):
     description = Column(String)
     stock = Column(Integer)
     status = Column(Integer)
+    image =Column(String)
