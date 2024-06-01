@@ -14,6 +14,7 @@ class PostDetailResponseModel(EntityModel):
     stock:int
     status:int
     qualifications: List[QualificationModel]
+    images: List[str]
 
     def __init__(self, post :PostDTO, qualifications: List[QualificationModel]):
         self.id = post.id
