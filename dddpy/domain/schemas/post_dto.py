@@ -30,6 +30,12 @@ class PostDTO(Base):
     def __str__(self):
         return f'PostDTO(name={self.name}, category={self.category}, price={self.price}, description={self.description}, stock={self.stock}, status={self.status})'
 
+    def editPost(self,price, description, stock, status):
+        self.price = float(price)
+        self.description = description
+        self.stock= stock
+        self.status = status
+        self.last_modified_date = self.creation_date
 
 
 

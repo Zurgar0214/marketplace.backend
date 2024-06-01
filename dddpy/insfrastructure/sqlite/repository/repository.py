@@ -1,6 +1,6 @@
 #infrastructure/repository_generic.py
 from sqlalchemy.orm import Session
-from typing import Type, TypeVar, Generic
+from typing import List, Type, TypeVar, Generic
 
 T = TypeVar('T')
 
@@ -29,3 +29,6 @@ class GenericRepository(Generic[T]):
     def delete(self, entity: T):
         self.db_session.delete(entity)
         self.db_session.commit()
+
+    def get_by_filter(self, **filters) -> List[T]:
+        return self.db_session.query(self.model).filter_by(**filters).all()
