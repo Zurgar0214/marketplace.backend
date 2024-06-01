@@ -2,6 +2,7 @@ from datetime import datetime
 import uuid
 from sqlalchemy import Column, DateTime, Integer, String, Float
 from dddpy.insfrastructure.sqlite.database import Base
+from sqlalchemy.orm import relationship
 
 
 class PostDTO(Base):
@@ -15,6 +16,7 @@ class PostDTO(Base):
     status = Column(Integer)
     creation_date = Column(DateTime)
     last_modified_date = Column(DateTime)
+    images = relationship("ImageDTO",back_populates="post")
 
     def __init__(self, name, category, price, description, stock, status):
         self.id = str(uuid.uuid4())
@@ -35,7 +37,7 @@ class PostDTO(Base):
         self.description = description
         self.stock= stock
         self.status = status
-        self.last_modified_date = self.creation_date
+        self.last_modified_date = datetime.now()
 
 
 

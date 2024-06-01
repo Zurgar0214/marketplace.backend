@@ -2,7 +2,6 @@ import uuid
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 from dddpy.insfrastructure.sqlite.database import Base
-from dddpy.insfrastructure.sqlite.schemas.post_dto import PostDTO
 
 
 class ImageDTO(Base):
