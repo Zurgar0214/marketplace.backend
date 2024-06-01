@@ -2,10 +2,10 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 from dddpy.application.Models.loginDataModel import UserLogin
 from dddpy.application.Services.authService import validate_password
+from dddpy.domain.schemas.user_dto import UserDTO
 from dddpy.insfrastructure.sqlite.database import get_db
 from sqlalchemy.orm import Session
 
-from dddpy.insfrastructure.sqlite.schemas.user_dto import UserDTO
 
 
 auth_router = APIRouter(prefix="/auth",tags=["auth"])
