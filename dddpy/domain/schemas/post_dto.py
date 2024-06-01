@@ -17,6 +17,7 @@ class PostDTO(Base):
     creation_date = Column(DateTime)
     last_modified_date = Column(DateTime)
     images = relationship("ImageDTO",back_populates="post")
+    orders = relationship("OrderDTO",back_populates="post")
 
     def __init__(self, name, category, price, description, stock, status):
         self.id = str(uuid.uuid4())
