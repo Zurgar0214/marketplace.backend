@@ -3,3 +3,4 @@ uvicorn[standard]
 sqlAlchemy[all]
 pyjwt
 bcrypt
+pyrebase4
