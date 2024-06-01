@@ -1,5 +1,6 @@
 from datetime import datetime
 from sqlalchemy import Column, DateTime, String
+from sqlalchemy.orm import relationship
 from dddpy.insfrastructure.services.encryptService import encrypt_password
 from dddpy.insfrastructure.sqlite.database import Base
 import uuid
@@ -17,6 +18,7 @@ class UserDTO(Base):
     password = Column(String)
     creation_date = Column(DateTime)
     last_modified_date = Column(DateTime)
+    orders = relationship("OrderDTO", back_populates="user_order")
 
     def __init__(self, name, lastName, email, phone, password):
         self.id = str(uuid.uuid4())
