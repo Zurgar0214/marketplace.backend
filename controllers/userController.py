@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Depends
 
 from dddpy.application.Models.userModel import UserModel
+from dddpy.domain.schemas.user_dto import UserDTO
 from dddpy.insfrastructure.sqlite.database import get_db
 from sqlalchemy.orm import Session
 
 from dddpy.insfrastructure.sqlite.repository.repository import GenericRepository
-from dddpy.insfrastructure.sqlite.schemas.user_dto import UserDTO
 
 
 user_router = APIRouter(prefix="/user",tags=["user"])
