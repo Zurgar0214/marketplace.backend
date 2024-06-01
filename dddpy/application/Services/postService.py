@@ -1,6 +1,6 @@
 from typing import List
 from dddpy.application.Models.editPostModel import EditPostModel
-from dddpy.application.Models.postDetailResponseModel import PostDetailResponseModel
+from dddpy.application.ResponseModels.postDetailResponseModel import PostDetailResponseModel
 from dddpy.application.Models.postModel import CreatePostModel
 from sqlalchemy.orm import Session
 from dddpy.domain.schemas.order_dto import OrderDTO

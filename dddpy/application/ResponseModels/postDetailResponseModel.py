@@ -6,7 +6,7 @@ from dddpy.application.Models.qualificationModel import QualificationModel
 from dddpy.domain.schemas.post_dto import PostDTO
 
 
-class PostDetailResponseModel(BaseModel, EntityModel):
+class PostDetailResponseModel(EntityModel):
     name:str
     category:int
     price:float
@@ -16,8 +16,14 @@ class PostDetailResponseModel(BaseModel, EntityModel):
     qualifications: List[QualificationModel]
 
     def __init__(self, post :PostDTO, qualifications: List[QualificationModel]):
+        self.id = post.id
         self.name = post.name
         self.category = post.category
+        self.price = post.price
+        self.description = post.description
+        self.stock = post.stock
+        self.status = post.status
+        self.creationDate = post.creation_date
         self.qualifications = qualifications
         
 
