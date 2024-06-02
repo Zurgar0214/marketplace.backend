@@ -8,5 +8,5 @@ class QualificationModel(EntityModel, BaseModel):
 
 class CreateQualificationModel(BaseModel):
     orderId: str
-    rate: int
+    score: int
     comment: str
