@@ -5,6 +5,7 @@ from sqlalchemy import Column, String, ForeignKey, Float, DateTime, Enum, Intege
 from sqlalchemy.orm import relationship
 
 from dddpy.domain.Enums.orderStatus import orderStatus
+from dddpy.domain.schemas.user_dto import UserDTO
 from dddpy.insfrastructure.sqlite.database import Base
 
 class OrderDTO(Base):
@@ -19,6 +20,7 @@ class OrderDTO(Base):
     post_order = relationship("PostDTO",  back_populates="orders")
     status = Column(Enum(orderStatus))
     quantity = Column(Integer)
+    qualifications = relationship("QualificationDTO", back_populates="order")
 
     def __init__(self, user_id, post_id, total_amount, status, quantity):
         self.user_id = user_id
