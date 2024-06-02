@@ -19,6 +19,7 @@ class OrderDTO(Base):
     post_order = relationship("PostDTO",  back_populates="orders")
     status = Column(Enum(orderStatus))
     quantity = Column(Integer)
+    qualifications= relationship("QualificationDTO", back_populates="order")
 
     def __init__(self, user_id, post_id, total_amount, status, quantity):
         self.user_id = user_id
