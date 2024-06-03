@@ -17,7 +17,14 @@ def login(user: UserLogin, db:Session = Depends(get_db)):
         token = validate_password(db_user, user)
         
         if token:
-            return JSONResponse(content={"token": token}, status_code=200)
+            user_data = {
+                "name":db_user.name,
+                "email": db_user.email,
+                "lastname": db_user.lastname,
+                "phone": db_user.phone,
+                "token": token
+            }
+            return JSONResponse(content=user_data, status_code=200)
         else:
             return JSONResponse(content={"message": "Invalid credentials"}, status_code=401)
         
