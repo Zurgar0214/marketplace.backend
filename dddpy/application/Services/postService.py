@@ -3,6 +3,7 @@ from dddpy.application.Models.editPostModel import EditPostModel
 from dddpy.application.ResponseModels.postDetailResponseModel import PostDetailResponseModel
 from dddpy.application.Models.postModel import CreatePostModel
 from sqlalchemy.orm import Session
+from dddpy.domain.schemas.image_dto import ImageDTO
 from dddpy.domain.schemas.order_dto import OrderDTO
 from dddpy.domain.schemas.post_dto import PostDTO
 from dddpy.domain.schemas.qualification_dto import QualificationDTO
@@ -29,9 +30,11 @@ def get_postById_service( id: str, db:Session ):
         repository = GenericRepository(db, PostDTO)
         orderRepository = GenericRepository(db, OrderDTO)
         qualificationrepository =  GenericRepository(db, QualificationDTO)
+        imageRepository = GenericRepository(db, ImageDTO)
         post =  repository.get(id)
         orders = orderRepository.get_by_filter(post_id = post.id)
         qualifications: List[QualificationDTO] = []
         for order in orders:
                qualifications.append(qualificationrepository.get_by_filter(order_id = order.id))
+        images = imageRepository.get_by_filter(post_id = post.id)
         return PostDetailResponseModel(post, qualifications)

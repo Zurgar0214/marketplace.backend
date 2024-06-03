@@ -5,6 +5,7 @@ from controllers.authController import auth_router
 from controllers.postController import post_router
 from controllers.imageController import image_router
 from controllers.orderController import order_router
+from controllers.qualificationController import qualification_router
 
 app = FastAPI(debug=True)
 Base.metadata.create_all(bind= engine)
@@ -13,6 +14,7 @@ app.include_router(auth_router)
 app.include_router(post_router)
 app.include_router(image_router)
 app.include_router(order_router)
+app.include_router(qualification_router)
 
 
 @app.get(
