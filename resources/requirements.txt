@@ -4,3 +4,4 @@ sqlAlchemy[all]
 pyjwt
 bcrypt
 pyrebase4
+pytest

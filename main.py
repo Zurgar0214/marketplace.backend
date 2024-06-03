@@ -1,4 +1,6 @@
+
 from fastapi import FastAPI, status
+from fastapi.middleware.cors import CORSMiddleware
 from dddpy.insfrastructure.sqlite.database import Base, engine
 from controllers.userController import user_router
 from controllers.authController import auth_router
@@ -8,6 +10,20 @@ from controllers.orderController import order_router
 from controllers.qualificationController import qualification_router
 
 app = FastAPI(debug=True)
+
+# Configuración de CORS
+origins = [
+    "*",  # Permite solicitudes de cualquier origen
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 Base.metadata.create_all(bind= engine)
 app.include_router(user_router)
 app.include_router(auth_router)
