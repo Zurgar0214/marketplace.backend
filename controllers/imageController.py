@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, UploadFile
 from sqlalchemy.orm import Session
 from dddpy.application.Models.userModel import UserModel
-from dddpy.application.Services.imageSerivice import upload_image_service
+from dddpy.application.Services.imageService import upload_image_service
 from dddpy.domain.schemas.image_dto import ImageDTO
 from dddpy.insfrastructure.Auth.jwt_depends import JWTBearer
 from dddpy.insfrastructure.services.storageService import FirebaseStorage
