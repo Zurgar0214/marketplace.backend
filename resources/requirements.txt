@@ -5,3 +5,4 @@ pyjwt
 bcrypt
 pyrebase4
 pytest
+python-dotenv
