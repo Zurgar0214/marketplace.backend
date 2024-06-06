@@ -11,7 +11,6 @@ class PostModel(BaseModel, EntityModel):
     description:str
     stock:int
     status:int
-    image: str
 
 class CreatePostModel(BaseModel):
     name:str
@@ -20,4 +19,3 @@ class CreatePostModel(BaseModel):
     description:str
     stock:int
     status:int
-    image: str

@@ -20,7 +20,7 @@ def login(user: UserLogin, db:Session = Depends(get_db)):
             user_data = {
                 "name":db_user.name,
                 "email": db_user.email,
-                "lastname": db_user.lastname,
+                "lastName": db_user.lastName,
                 "phone": db_user.phone,
                 "token": token
             }

@@ -37,4 +37,4 @@ def get_postById_service( id: str, db:Session ):
         for order in orders:
                qualifications.append(qualificationrepository.get_by_filter(order_id = order.id))
         images = imageRepository.get_by_filter(post_id = post.id)
-        return PostDetailResponseModel(post, qualifications)
+        return PostDetailResponseModel(post,qualifications,images)

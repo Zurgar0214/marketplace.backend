@@ -5,7 +5,7 @@ from dddpy.domain.schemas.order_dto import OrderDTO
 from dddpy.domain.schemas.qualification_dto import QualificationDTO
 from dddpy.insfrastructure.sqlite.repository.repository import GenericRepository
 
-async def create_qualification_service(qualification: CreateQualificationModel,db:Session):
+def create_qualification_service(qualification: CreateQualificationModel,db:Session):
     repository = GenericRepository(db, QualificationDTO)
     order_repository = GenericRepository(db, OrderDTO)
     order_entity = order_repository.get(qualification.orderId)
