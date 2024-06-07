@@ -11,3 +11,7 @@ class CreateOrderModel(BaseModel):
     quantity: int
     userId: str
     postId: str
+
+class UpdateOrderStatusModel(BaseModel):
+    status: orderStatus
+    orderId: str

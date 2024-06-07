@@ -31,6 +31,13 @@ def get_order_by_id_service(id: str, db: Session) -> OrderDTO:
     order.post_order = map_post_to_order(order.post_id, db)
     return order
 
+def change_order_status_service(id: str, status: orderStatus, db: Session):
+    repository = GenericRepository(db, OrderDTO)
+    order = repository.get(id)
+    order.status = status
+    repository.update(order)
+    return order
+
 def map_user_to_order(user_id:str, db: Session) -> UserDTO:
     user_repository = GenericRepository(db, UserDTO)
     user = user_repository.get(entity_id=user_id)
