@@ -18,18 +18,18 @@ async def create_order(order: CreateOrderModel, db: Session = Depends(get_db), a
 @order_router.get(
         "/getAllOrders"
         )
-async def get_all_orders(db: Session = Depends(get_db)):
+async def get_all_orders(db: Session = Depends(get_db), authorized: UserModel = Depends(JWTBearer())):
     return get_all_orders_service(db)
 
 @order_router.get(
     "/getOrderById"
 )
-async def get_order_by_id(id: str, db: Session = Depends(get_db)):
+async def get_order_by_id(id: str, db: Session = Depends(get_db), authorized: UserModel = Depends(JWTBearer())):
     return get_order_by_id_service(id, db)
 
 @order_router.put(
     "/updateOrderStatus"
 )
-async def change_order_status(model: UpdateOrderStatusModel, db: Session = Depends(get_db)):
+async def change_order_status(model: UpdateOrderStatusModel, db: Session = Depends(get_db), authorized: UserModel = Depends(JWTBearer())):
     return change_order_status_service(model.orderId, model.status, db)
     
