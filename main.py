@@ -1,6 +1,7 @@
-
+import os
 from fastapi import FastAPI, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from dddpy.insfrastructure.sqlite.database import Base, engine
 from controllers.userController import user_router
 from controllers.authController import auth_router
@@ -9,7 +10,10 @@ from controllers.imageController import image_router
 from controllers.orderController import order_router
 from controllers.qualificationController import qualification_router
 
-app = FastAPI(debug=True)
+app = FastAPI(
+    title="Marketplace API",
+    debug=True
+)
 
 # Configuración de CORS
 origins = [
@@ -40,6 +44,11 @@ app.include_router(qualification_router)
 async def healthCheck():
     '''app is already working!'''
     return {"message": "All works!"}
+
+@app.get("/")
+def read_root():
+    image_path = os.path.join("resources", "images", "codesnakes.png")
+    return FileResponse(image_path)
 
 
 
