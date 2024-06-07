@@ -19,14 +19,14 @@ async def create_post(post:CreatePostModel,db:Session = Depends(get_db), authori
 @post_router.get(
      "/getPosts"
         )
-async def get_posts(db:Session = Depends(get_db), authorized: UserModel = Depends(JWTBearer())):
+async def get_posts(db:Session = Depends(get_db)):
         return get_posts_service(db)
 
 
 @post_router.get(
      "/getPostById"
         )
-async def get_postById( id: str,db:Session = Depends(get_db), authorized: UserModel = Depends(JWTBearer())):
+async def get_postById( id: str,db:Session = Depends(get_db)):
         return get_postById_service(id,db)
 
 

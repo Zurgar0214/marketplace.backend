@@ -10,8 +10,6 @@ class UserDTO(Base):
     id = Column(String, primary_key=True, index=True)
     name = Column(String)
     lastName = Column(String)
-    name = Column(String)
-    lastName = Column(String)
     email = Column(String)
     password = Column(String)
     phone = Column(String)
