@@ -41,7 +41,8 @@ def change_order_status_service(id: str, status: orderStatus, db: Session):
 def map_user_to_order(user_id:str, db: Session) -> UserDTO:
     user_repository = GenericRepository(db, UserDTO)
     user = user_repository.get(entity_id=user_id)
-    user.password = None
+    if user:
+        user.password = None
     return user
 
 def map_post_to_order(post_id:str, db: Session) -> PostDTO:
