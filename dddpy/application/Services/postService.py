@@ -10,7 +10,7 @@ from dddpy.domain.schemas.qualification_dto import QualificationDTO
 from dddpy.insfrastructure.sqlite.repository.repository import GenericRepository
 
 def create_post_service(post:CreatePostModel, db: Session):
-        new_post = PostDTO(post.name, post.category, post.price, post.description, post.stock, post.status)
+        new_post = PostDTO(post.name, post.category, post.price, post.description, post.stock, post.status, post.createdUser)
         repository = GenericRepository(db, PostDTO)
         response = repository.add(new_post)
         return response.id
@@ -38,3 +38,7 @@ def get_postById_service( id: str, db:Session ):
                qualifications.append(qualificationrepository.get_by_filter(order_id = order.id))
         images = imageRepository.get_by_filter(post_id = post.id)
         return PostDetailResponseModel(post,qualifications,images)
+
+def get_posts_by_user_service(user_id:str,db:Session):
+       repository = GenericRepository(db, PostDTO)
+       return repository.get_by_filter(user_id = user_id)

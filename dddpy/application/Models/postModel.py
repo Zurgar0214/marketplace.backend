@@ -5,6 +5,7 @@ from dddpy.application.Models.entityModel import EntityModel
 
 
 class PostModel(BaseModel, EntityModel):
+    createdUser: str
     name:str
     category:int
     price:float
@@ -13,6 +14,7 @@ class PostModel(BaseModel, EntityModel):
     status:int
 
 class CreatePostModel(BaseModel):
+    createdUser: str
     name:str
     category:int
     price: float
