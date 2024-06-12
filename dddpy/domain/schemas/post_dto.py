@@ -16,6 +16,7 @@ class PostDTO(Base):
     status = Column(Integer)
     creation_date = Column(DateTime)
     last_modified_date = Column(DateTime)
+    usercreated = relationship("UserDTO", back_populates="post")
     images = relationship("ImageDTO",back_populates="post")
     orders = relationship("OrderDTO",  back_populates="post_order")
     
