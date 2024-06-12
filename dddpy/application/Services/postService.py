@@ -1,8 +1,8 @@
 from typing import List
 from dddpy.application.Models.editPostModel import EditPostModel
 from dddpy.application.ResponseModels.postDetailResponseModel import PostDetailResponseModel
-from dddpy.application.Models.postModel import CreatePostModel
-from sqlalchemy.orm import Session
+from dddpy.application.Models.postModel import CreatePostModel, PostOrdersModel
+from sqlalchemy.orm import Session, selectinload
 from dddpy.domain.schemas.image_dto import ImageDTO
 from dddpy.domain.schemas.order_dto import OrderDTO
 from dddpy.domain.schemas.post_dto import PostDTO
@@ -41,4 +41,17 @@ def get_postById_service( id: str, db:Session ):
 
 def get_posts_by_user_service(user_id:str,db:Session):
        repository = GenericRepository(db, PostDTO)
-       return repository.get_by_filter(user_id = user_id)
+       orderRepository = GenericRepository(db, OrderDTO)
+       posts = repository.get_by_filter(user_id = user_id)
+       postOrders : List[PostOrdersModel] = []
+       for post in posts:
+              orders =orderRepository.get_by_filter(post_id = post.id)
+              response = PostOrdersModel(post,orders)
+              postOrders.append(response)
+       return postOrders
+
+def get_posts_with_images_service(db: Session, limit: int, skip: int):
+    query = db.query(PostDTO).options(selectinload(PostDTO.images))
+    total = query.count()  # Get the total count of posts
+    posts = query.offset(skip).limit(limit).all()
+    return posts, total
