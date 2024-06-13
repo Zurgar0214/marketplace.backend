@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, UploadFile
+from fastapi import APIRouter, Depends, UploadFile, Form, File
 from sqlalchemy.orm import Session
 from dddpy.application.Models.userModel import UserModel
 from dddpy.application.Services.imageService import upload_image_service
@@ -13,5 +13,5 @@ image_router = APIRouter(prefix="/image",tags=["image"])
 @image_router.post(
         "/uploadImage"
         )
-async def upload_image(image:UploadFile,idPost: str, db: Session = Depends(get_db), authorized: UserModel = Depends(JWTBearer()))->str:
+async def upload_image(image:UploadFile = File(...), idPost: str = Form(...), db: Session = Depends(get_db), authorized: UserModel = Depends(JWTBearer()))->str:
     return await upload_image_service(image, idPost, db)
