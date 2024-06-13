@@ -13,7 +13,7 @@ post_router = APIRouter(prefix="/post",tags=["post"])
         "/createPost"
         )
 async def create_post(post:CreatePostModel,db:Session = Depends(get_db), authorized: UserModel = Depends(JWTBearer())):
-        return create_post_service(authorized,post,db)
+        return create_post_service(post,db)
 
 
 @post_router.get(
