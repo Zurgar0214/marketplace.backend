@@ -16,10 +16,11 @@ class PostDetailResponseModel(EntityModel):
     description:str
     stock:int
     status:int
+    phone: str
     qualifications: List[QualificationDTO]
     images: List[ImageDTO]
 
-    def __init__(self, post :PostDTO, qualifications: List[QualificationDTO], images :List[ImageDTO]):
+    def __init__(self, post :PostDTO, qualifications: List[QualificationDTO], images :List[ImageDTO], phone : str):
         self.created_User = post.user_id
         self.id = post.id
         self.name = post.name
@@ -31,6 +32,7 @@ class PostDetailResponseModel(EntityModel):
         self.creationDate = post.creation_date
         self.qualifications = qualifications
         self.images = images
+        self.phone = phone
         
 
 
