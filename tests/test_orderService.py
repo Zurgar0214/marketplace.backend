@@ -30,7 +30,7 @@ def db():
 def test_create_order_service(db: Session):
     # Crear usuario y post de prueba
     user = UserDTO(name="Test", lastName="User", email="testuser@example.com", phone="32344444", password="Admin1234")
-    post = PostDTO(name="Test Post", category=1, price=100.0, description="A test post", stock=10, status=1)
+    post = PostDTO(name="Test Post", category=1, price=100.0, description="A test post", stock=10, status=1, createdUser=user.id)
     db.add(user)
     db.add(post)
     db.commit()

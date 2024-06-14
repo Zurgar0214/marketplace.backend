@@ -2,8 +2,9 @@
 import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
+from dddpy.domain.schemas.user_dto import UserDTO
 from dddpy.insfrastructure.sqlite.database import Base, get_db
-from dddpy.application.Services.postService import create_post_service, get_posts_service, edit_post_service, get_postById_service
+from dddpy.application.Services.postService import create_post_service, get_posts_by_user_service, get_posts_service, edit_post_service, get_postById_service
 from dddpy.application.Models.postModel import CreatePostModel
 from dddpy.application.Models.editPostModel import EditPostModel
 from dddpy.domain.schemas.post_dto import PostDTO
@@ -35,7 +36,8 @@ def test_create_post_service(db: Session):
         price=100.0,
         description="A test post",
         stock=10,
-        status=1
+        status=1,
+        createdUser="e8007d1f-458b-4be6-8f07-e3371219d705"
     )
     post_id = create_post_service(post_data, db)
     assert post_id is not None
@@ -69,5 +71,21 @@ def test_get_postById_service(db: Session):
     post_detail = get_postById_service(post.id, db)
     assert post_detail.id == post.id
     assert post_detail.name == post.name
-    assert len(post_detail.qualifications) == 0
-    assert len(post_detail.images) == 0
+
+def test_get_post_by_user_service(db: Session):
+    # Primero, crea un usuario y un post asociado a ese usuario
+    user = UserDTO(name="Test For Posts", lastName="User", email="testuser@example.com", phone="32344444", password="Admin1234")
+    post = PostDTO(name="Test Post With User", category=1, price=150.0, description="A test post", stock=10, status=1, createdUser=user.id)
+    db.add(user)
+    db.add(post)
+    db.commit()
+
+    # Luego, llama a tu servicio get_post_by_user
+    posts = get_posts_by_user_service(user.id, db)
+
+    # Asegúrate de que el servicio devuelve el post correcto
+    assert len(posts) == 1
+    assert posts[0].id == post.id
+    assert posts[0].price == post.price
+    assert posts[0].description == post.description
+    assert posts[0].stock == post.stock

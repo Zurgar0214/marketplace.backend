@@ -45,7 +45,7 @@ def db_session():
 
 
 def test_login_invalid_credentials(db_session):
-    response = client.post("/auth/login", json={"email": "john@example.com", "password": "wrong_password"})
+    response = client.post("/auth/login", json={"email": "john.doe@example.com", "password": "wrong_password"})
     
     assert response.status_code == 401
     assert response.json() == {"message": "Invalid credentials"}

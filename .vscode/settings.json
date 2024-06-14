@@ -6,6 +6,12 @@
             "driver": "SQLite",
             "name": "Marketplace",
             "database": "${workspaceFolder:marketplace.backend}/marketplace.db"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "testDb",
+            "database": "${workspaceFolder:marketplace.backend}/test.db"
         }
     ],
     "liveServer.settings.port": 5501
